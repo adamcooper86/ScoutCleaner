@@ -2,14 +2,17 @@ class Cleaner
   def self.clean_folder path
     Dir.glob(path + "/**").sort.each do |file|
       if File.file?(file)
-        filename = self.clean_file_name file
-        filename = path + "/" + filename
-        File.rename file, filename
+        self.rename_file file, path
       else
         puts file + " is a folder"
       end
     end
     "Cleaned files in folder: " + path
+  end
+  def self.rename_file file, path
+    filename = self.clean_file_name file
+    filename = path + "/" + filename
+    File.rename file, filename
   end
   def self.clean_file_name file
     extension = File.extname file
