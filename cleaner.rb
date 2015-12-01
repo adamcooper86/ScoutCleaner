@@ -5,6 +5,7 @@ class Cleaner
         self.rename_file file, path
       else
         puts file + " is a folder"
+        self.clean_folder file
       end
     end
     "Cleaned files in folder: " + path
