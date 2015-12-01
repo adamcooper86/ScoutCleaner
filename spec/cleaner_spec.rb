@@ -54,6 +54,26 @@ describe Cleaner do
       expect(Cleaner.clean_file_name "hello{hello.txt").to eq "hello_hello.txt"
       expect(Cleaner.clean_file_name "hello;hello.txt").to eq "hello_hello.txt"
     end
+    it 'returns a valid folder name if given an invalid string' do
+      expect(Cleaner.clean_file_name "hello hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello  hello").to eq "hello__hello"
+      expect(Cleaner.clean_file_name 'hello\hello').to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello/hello").to eq "hello"
+      expect(Cleaner.clean_file_name "hello:hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello*hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello?hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name 'hello"hello').to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello<hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello>hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello|hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello#hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello%hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello~hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello&hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello}hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello{hello").to eq "hello_hello"
+      expect(Cleaner.clean_file_name "hello;hello").to eq "hello_hello"
+    end
   end
   context ".clean_folder" do
     it 'returns true when completed' do
