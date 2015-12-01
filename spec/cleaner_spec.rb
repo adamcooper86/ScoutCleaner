@@ -55,4 +55,9 @@ describe Cleaner do
       expect(Cleaner.clean_file_name "hello;hello.txt").to eq "hello_hello.txt"
     end
   end
+  context ".clean_folder" do
+    it 'returns true when completed' do
+      expect(Cleaner.clean_folder File.absolute_path("files")).to be_truthy
+    end
+  end
 end
