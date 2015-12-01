@@ -1,14 +1,21 @@
 class Cleaner
   def self.clean_folder path
+    dirty_folders = []
     Dir.glob(path + "/**").sort.each do |file|
-      if File.file?(file)
-        self.rename_file file, path
-      else
-        puts file + " is a folder"
+      if File.directory?(file)
         self.clean_folder file
+        dirty_folders << file
+      else
+        puts 'cleaning file' + file
+        self.rename_file file, path
       end
     end
+
+    self.rename_folders dirty_folders, path
     "Cleaned files in folder: " + path
+  end
+  def self.rename_folders folders, path
+    folders.each{ |folder| self.rename_file folder, path }
   end
   def self.rename_file file, path
     filename = self.clean_file_name file
