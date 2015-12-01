@@ -20,5 +20,5 @@ start = Time.now
 ScoutCleanerController.new path_info
 finish = Time.now
 
-puts "Time for 100 renames: "
+puts "Time for this run: "
 puts finish - start
