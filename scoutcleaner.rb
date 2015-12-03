@@ -9,6 +9,7 @@ class ScoutCleanerController
     else
       path = @view.get_path
     end
+    puts "The path variable you entered is: " + path
     @view.message(Cleaner.clean_folder path)
     @view.goodbye
   end

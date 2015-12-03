@@ -2,6 +2,9 @@ class Cleaner
   def self.clean_folder path
     dirty_folders = []
 
+    puts "About to clean: " + path
+    puts "Files in that path: " + Dir.glob(path + "/**")
+
     Dir.glob(path + "/**").sort.each do |file|
       if File.directory?(file)
         self.clean_folder file
