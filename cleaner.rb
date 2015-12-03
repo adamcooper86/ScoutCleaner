@@ -3,7 +3,8 @@ class Cleaner
     dirty_folders = []
 
     puts "About to clean: " + path
-    puts "Files in that path: " + Dir.glob(path + "/**")
+    puts "Files in that path: "
+    p Dir.glob(path + "/**")
 
     Dir.glob(path + "/**").sort.each do |file|
       if File.directory?(file)
